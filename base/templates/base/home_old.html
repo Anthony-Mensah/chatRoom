@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+
+{% block content %}
+{% if request.user.is_authenticated %}
+<h1>hello {{request.user.username}}</h1>
+{% endif %}
+
+<form class="" action="" method="GET">
+  {% csrf_token %}
+  <input type="text" name="q" value="" placeholder="search here">
+</form>
+<!-- TOPICS  -->
+<h2>TOPICS</h2>
+
+{% include 'base/topics_component.html' %}
+
+<h2>Rooms</h2>
+<!-- ROOM COMPONENT  -->
+<h3>{{room_count}} Rooms Available</h3>
+<a href="{% url 'create-room' %}">CREATE ROOM</a>
+{% include 'base/room_feed_component.html' %}
+
+<h2>ACTIVITIES</h2>
+<!-- ACTIVITIES  -->
+{% include 'base/activity_component.html' %}
+{% endblock %}

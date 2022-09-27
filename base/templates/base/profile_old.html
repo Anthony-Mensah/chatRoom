@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- USER PROFILE -->
+<h2>@{{user.username}}</h2>
+<!-- TOPICS  -->
+<h2>TOPICS</h2>
+{% include 'base/topics_component.html' %}
+
+<!-- ROOM COMPONENT  -->
+<h2>Rooms</h2>
+{% include 'base/room_feed_component.html' %}
+
+<!-- ACTIVITIES  -->
+<h2>ACTIVITIES</h2>
+{% include 'base/activity_component.html' %}
+{% endblock %}

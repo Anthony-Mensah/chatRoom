@@ -1,0 +1,18 @@
+{% extends 'main.html' %}
+
+
+<!-- BLOCK CONTENT -->
+{% block content %}
+<div class="">
+  <form class="" action="" method="POST">
+    {% csrf_token %}
+    {% for field in u_form %}
+    <label for="">{{field.label}}</label>
+    {{field}}
+    {% endfor %}
+
+    <input type="submit" name="" value="submit">
+  </form>
+</div>
+
+{% endblock %}

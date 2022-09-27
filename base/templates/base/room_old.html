@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block title %}
+Let's Learn - {{room.name}}
+{% endblock %}
+
+{% block content %}
+{% if request.user == room.host %}
+<a href="{% url 'update-room' room.id %}">Update</a>
+<a href="{% url 'delete-room' room.id %}">Delete</a>
+{% endif %}
+<br>
+<a href="{% url 'profile' room.host.id %}">@{{room.host.username}}--{{room.created|timesince}}</a>
+<a href="{% url 'room' room.id %}"><p>{{room.name}}</p></a>
+<p>{{room.description}}</p>
+<p>{{room.topic}}</p>
+
+<!-- #MESSAGES -->
+<h2>MESSAGES</h2>
+{% for message in room_messages %}
+<p>{{message.user}}</p>
+<p>{{message.created|timesince}}</p>
+<p>{{message.body}}</p>
+<hr>
+{% endfor %}
+
+<!-- ROOM FORM -->
+<form class="" action="" method="POST">
+  {% csrf_token %}
+  <input type="text" name="body" value="" placeholder="Say something">
+</form>
+
+<!-- #PARTICIPANTS -->
+<h2>PARTICIPANTS</h2>
+{% for participant in room_participants %}
+<p>{{participant.username}}</p>
+{% endfor %}
+
+{% endblock %}
